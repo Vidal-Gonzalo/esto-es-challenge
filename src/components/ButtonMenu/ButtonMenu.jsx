@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ButtonMenu.css";
+import { swalConfirmation } from "../../utils/swal";
 import Button from "@mui/material/Button";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -25,7 +26,12 @@ export default function ButtonMenu({ projectId }) {
   const dispatch = useDispatch();
 
   const handleDelete = (id) => {
-    dispatch(deleteProject(id));
+    swalConfirmation(
+      "Are you sure you want to delete this project?",
+      () => dispatch(deleteProject(id)),
+      "Project deleted!",
+      "Cancelled"
+    );
   };
 
   return (

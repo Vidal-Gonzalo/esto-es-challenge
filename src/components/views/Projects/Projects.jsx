@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Card from "../../Card/Card";
 import "./Projects.css";
 
 export default function Projects() {
   const [projectsList, setProjectsList] = useState([]);
-  const dispatch = useDispatch();
 
   const { loading, error, projects } = useSelector((state) => {
-    console.log(state);
     return state.projectReducer;
   });
 

@@ -14,7 +14,7 @@ export default function Card({ project }) {
             src={project.userImage}
             alt="Profile picture"
           />
-          <p>{project.username}</p>
+          <p>{project.assigned}</p>
         </div>
       </div>
       <div className="card-actions">
