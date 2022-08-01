@@ -1,7 +1,13 @@
 .projects {
   background-color: var(--global-bg-color-soft);
+  overflow: scroll;
 }
 
 .projects ul {
   padding: 0;
+}
+
+.projects .search {
+  padding-bottom: 1.5em;
+  border-bottom: var(--global-border);
 }

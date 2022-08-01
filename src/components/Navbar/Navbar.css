@@ -29,3 +29,9 @@
 .navbar .back-button p {
   margin-left: 5px;
 }
+
+.navbar .projects {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
