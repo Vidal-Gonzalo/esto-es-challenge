@@ -1,28 +1,20 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addProject } from "../../store/actions/projectActions";
+import Button from "../Button/Button";
 import { date } from "../../utils/date";
 import { getUserImage } from "../../utils/getUserData";
 import { swalSuccess } from "../../utils/swal";
 
-export default function Form({ id, action }) {
+export default function Form({ id, action, buttonText }) {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.projectReducer.users);
   const projects = useSelector((state) => state.projectReducer.projects);
   const navigate = useNavigate();
 
   const getMaxId = (projects) => projects.length + 1;
-
-  const initialValues = {
-    title: "",
-    description: "",
-    manager: "",
-    assigned: "",
-    status: "",
-  };
 
   const length = "* This field needs to have at least 4 characters";
   const required = "* Required field";
@@ -35,23 +27,33 @@ export default function Form({ id, action }) {
     status: Yup.string().required(required),
   });
 
+  const project = projects.find((p) => p.id === Number(id));
+
+  const initialValues = {
+    title: "",
+    description: "",
+    manager: "",
+    assigned: "",
+    status: "",
+  };
+
   const onSubmit = () => {
     const { title, description, manager, assigned, status } = values;
 
     const userImage = getUserImage(users, assigned);
 
     const projectData = {
-      id: getMaxId(projects),
-      date: date(),
-      userImage,
+      id: project ? project.id : getMaxId(projects),
       title,
+      date: project ? project.date : date(),
+      assigned,
+      userImage,
       description,
       manager,
-      assigned,
       status,
     };
 
-    dispatch(addProject(projectData));
+    dispatch(action(projectData));
     swalSuccess("Project added successfully!");
     navigate("/", { replace: true });
   };
@@ -71,6 +73,7 @@ export default function Form({ id, action }) {
           values={values.title}
           onChange={handleChange}
           className={errors.title && touched.title ? "error" : ""}
+          defaultValue={project?.title}
         />
         {errors.title && touched.title && (
           <span className="errors">{errors.title}</span>
@@ -85,6 +88,7 @@ export default function Form({ id, action }) {
           values={values.description}
           onChange={handleChange}
           className={errors.description && touched.description ? "error" : ""}
+          defaultValue={project?.description}
         />
         {errors.description && touched.description && (
           <span className="errors">{errors.description}</span>
@@ -99,6 +103,7 @@ export default function Form({ id, action }) {
           values={values.manager}
           onChange={handleChange}
           className={errors.manager && touched.manager ? "error" : ""}
+          defaultValue={project?.manager}
         >
           <option value="">Select a person</option>
           {users?.map((option, index) => (
@@ -120,6 +125,7 @@ export default function Form({ id, action }) {
           values={values.assigned}
           onChange={handleChange}
           className={errors.assigned && touched.assigned ? "error" : ""}
+          defaultValue={project?.assigned}
         >
           <option value="">Select a person</option>
           {users?.map((option, index) => (
@@ -141,16 +147,17 @@ export default function Form({ id, action }) {
           values={values.status}
           onChange={handleChange}
           className={errors.status && touched.status ? "error" : ""}
+          defaultValue={project?.status}
         >
-          <option value="true">Enabled</option>
-          <option value="asd">asd</option>
+          <option value="enabled">Enabled</option>
+          <option value="disabled">Disabled</option>
         </select>
         {errors.status && touched.status && (
           <span className="errors">{errors.status}</span>
         )}
       </div>
       <div>
-        <button type="submit">Enviar</button>
+        <Button text={buttonText} type={"submit"} />
       </div>
     </form>
   );

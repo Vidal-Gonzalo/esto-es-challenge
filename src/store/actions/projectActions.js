@@ -1,4 +1,4 @@
-import { PROJECT_DELETE, PROJECT_ADD } from "../types";
+import { PROJECT_DELETE, PROJECT_ADD, PROJECT_EDIT } from "../types";
 
 export const deleteProject = (id) => ({
   type: PROJECT_DELETE,
@@ -8,4 +8,9 @@ export const deleteProject = (id) => ({
 export const addProject = (item) => ({
   type: PROJECT_ADD,
   payload: item,
+});
+
+export const editProject = (editedItem) => ({
+  type: PROJECT_EDIT,
+  payload: editedItem,
 });

@@ -1,5 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
-
 export const getUserImage = (users, userName) => {
   let image;
   users.forEach((user) => {

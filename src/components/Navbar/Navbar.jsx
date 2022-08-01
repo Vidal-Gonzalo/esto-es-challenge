@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -10,11 +10,16 @@ export default function Navbar() {
   const [title, setTitle] = useState("");
 
   useEffect(() => {
-    location.pathname === "/" && setTitle("My projects");
-    location.pathname === "/editproject" && setTitle("Edit project");
-    location.pathname === "/addproject" && setTitle("Add project");
+    if (location.pathname === "/") {
+      setTitle("My projects");
+    } else if (location.pathname === "/addproject") {
+      setTitle("Add project");
+    } else {
+      setTitle("Edit project");
+    }
   }, [location]);
 
+  location.pathname === "/editproject/:id" && setTitle("Edit project");
   return (
     <div className="navbar">
       {title === "My projects" ? (
@@ -24,6 +29,7 @@ export default function Navbar() {
             <Button
               action={() => navigate("/addproject")}
               text={"Add project"}
+              type="button"
             />
           </div>
         </>

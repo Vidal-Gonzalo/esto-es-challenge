@@ -18,7 +18,7 @@ export default function Card({ project }) {
         </div>
       </div>
       <div className="card-actions">
-        <ButtonMenu projectId={project.id} />
+        <ButtonMenu id={project.id} />
       </div>
     </div>
   );

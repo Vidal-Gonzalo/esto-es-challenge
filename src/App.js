@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Projects from "./components/views/Projects/Projects";
@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Projects />} />
         <Route path="/addproject" element={<AddProject />} />
-        <Route path="/editproject" element={<EditProject />} />
+        <Route path="/editproject/:id" element={<EditProject />} />
       </Routes>
     </div>
   );

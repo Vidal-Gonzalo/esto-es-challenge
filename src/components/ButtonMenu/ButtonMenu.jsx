@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { deleteProject } from "../../store/actions/projectActions";
 import { useDispatch } from "react-redux";
 
-export default function ButtonMenu({ projectId }) {
+export default function ButtonMenu({ id }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -55,13 +55,13 @@ export default function ButtonMenu({ projectId }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={() => navigate("/editproject")}>
+        <MenuItem onClick={() => navigate(`/editproject/${id}`)}>
           <ListItemIcon>
             <EditIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText>Edit</ListItemText>
         </MenuItem>
-        <MenuItem onClick={() => handleDelete(projectId)}>
+        <MenuItem onClick={() => handleDelete(id)}>
           <ListItemIcon>
             <DeleteIcon fontSize="small" />
           </ListItemIcon>
