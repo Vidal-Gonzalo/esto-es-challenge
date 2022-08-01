@@ -26,6 +26,7 @@ export default function Projects() {
         <input
           type="text"
           placeholder="Search..."
+          className="form-input"
           onChange={(event) => setSearchTerm(event.target.value)}
         />
       </div>

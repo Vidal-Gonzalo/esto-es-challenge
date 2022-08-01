@@ -7,7 +7,12 @@ export default function EditProject() {
   const { id } = useParams();
   return (
     <div>
-      <Form id={id} buttonText={"Save changes"} action={editProject} />
+      <Form
+        id={id}
+        buttonText={"Save changes"}
+        action={editProject}
+        alertMessage={"Project modified successfully!"}
+      />
     </div>
   );
 }

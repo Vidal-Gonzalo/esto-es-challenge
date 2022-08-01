@@ -1,5 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
+import "./Form.css";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +9,7 @@ import { date } from "../../utils/date";
 import { getUserImage } from "../../utils/getUserData";
 import { swalSuccess } from "../../utils/swal";
 
-export default function Form({ id, action, buttonText }) {
+export default function Form({ id, action, buttonText, alertMessage }) {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.projectReducer.users);
   const projects = useSelector((state) => state.projectReducer.projects);
@@ -54,7 +55,7 @@ export default function Form({ id, action, buttonText }) {
     };
 
     dispatch(action(projectData));
-    swalSuccess("Project added successfully!");
+    swalSuccess(alertMessage);
     navigate("/", { replace: true });
   };
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
@@ -63,102 +64,129 @@ export default function Form({ id, action, buttonText }) {
     formik;
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="title">Project title</label>
-        <input
-          type="text"
-          name="title"
-          onBlur={handleBlur}
-          values={values.title}
-          onChange={handleChange}
-          className={errors.title && touched.title ? "error" : ""}
-          defaultValue={project?.title}
-        />
-        {errors.title && touched.title && (
-          <span className="errors">{errors.title}</span>
-        )}
-      </div>
-      <div>
-        <label htmlFor="description">Description</label>
-        <input
-          type="text"
-          name="description"
-          onBlur={handleBlur}
-          values={values.description}
-          onChange={handleChange}
-          className={errors.description && touched.description ? "error" : ""}
-          defaultValue={project?.description}
-        />
-        {errors.description && touched.description && (
-          <span className="errors">{errors.description}</span>
-        )}
-      </div>
-      <div>
-        <label htmlFor="manager">Project manager</label>
-        <select
-          type="text"
-          name="manager"
-          onBlur={handleBlur}
-          values={values.manager}
-          onChange={handleChange}
-          className={errors.manager && touched.manager ? "error" : ""}
-          defaultValue={project?.manager}
-        >
-          <option value="">Select a person</option>
-          {users?.map((option, index) => (
-            <option key={index} value={option.name}>
-              {option.name}
-            </option>
-          ))}
-        </select>
-        {errors.manager && touched.manager && (
-          <span className="errors">{errors.manager}</span>
-        )}
-      </div>
-      <div>
-        <label htmlFor="assigned">Assigned to</label>
-        <select
-          type="text"
-          name="assigned"
-          onBlur={handleBlur}
-          values={values.assigned}
-          onChange={handleChange}
-          className={errors.assigned && touched.assigned ? "error" : ""}
-          defaultValue={project?.assigned}
-        >
-          <option value="">Select a person</option>
-          {users?.map((option, index) => (
-            <option key={index} value={option.name}>
-              {option.name}
-            </option>
-          ))}
-        </select>
-        {errors.assigned && touched.assigned && (
-          <span className="errors">{errors.assigned}</span>
-        )}
-      </div>
-      <div>
-        <label htmlFor="status">Status</label>
-        <select
-          type="text"
-          name="status"
-          onBlur={handleBlur}
-          values={values.status}
-          onChange={handleChange}
-          className={errors.status && touched.status ? "error" : ""}
-          defaultValue={project?.status}
-        >
-          <option value="enabled">Enabled</option>
-          <option value="disabled">Disabled</option>
-        </select>
-        {errors.status && touched.status && (
-          <span className="errors">{errors.status}</span>
-        )}
-      </div>
-      <div>
-        <Button text={buttonText} type={"submit"} />
-      </div>
-    </form>
+    <div className="form">
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label className="label" htmlFor="title">
+            Project name
+          </label>
+          <input
+            type="text"
+            name="title"
+            onBlur={handleBlur}
+            values={values.title}
+            onChange={handleChange}
+            className={errors.title && touched.title ? "error" : "form-input"}
+            defaultValue={project?.title}
+          />
+          {errors.title && touched.title && (
+            <>
+              <br />
+              <span className="errors">{errors.title}</span>
+            </>
+          )}
+        </div>
+        <div className="form-group">
+          <label htmlFor="description">Description</label>
+          <input
+            type="text"
+            name="description"
+            onBlur={handleBlur}
+            values={values.description}
+            onChange={handleChange}
+            className={
+              errors.description && touched.description ? "error" : "form-input"
+            }
+            defaultValue={project?.description}
+          />
+          {errors.description && touched.description && (
+            <>
+              <br />
+              <span className="errors">{errors.description}</span>
+            </>
+          )}
+        </div>
+        <div className="form-group">
+          <label htmlFor="manager">Project manager</label>
+          <select
+            type="text"
+            name="manager"
+            onBlur={handleBlur}
+            values={values.manager}
+            onChange={handleChange}
+            className={
+              errors.manager && touched.manager ? "error" : "form-select"
+            }
+            defaultValue={project?.manager}
+          >
+            <option value="">Select a person</option>
+            {users?.map((option, index) => (
+              <option key={index} value={option.name}>
+                {option.name}
+              </option>
+            ))}
+          </select>
+          {errors.manager && touched.manager && (
+            <>
+              <br />
+              <span className="errors">{errors.manager}</span>
+            </>
+          )}
+        </div>
+        <div className="form-group">
+          <label htmlFor="assigned">Assigned to</label>
+          <select
+            type="text"
+            name="assigned"
+            onBlur={handleBlur}
+            values={values.assigned}
+            onChange={handleChange}
+            className={
+              errors.assigned && touched.assigned ? "error" : "form-select"
+            }
+            defaultValue={project?.assigned}
+          >
+            <option value="">Select a person</option>
+            {users?.map((option, index) => (
+              <option key={index} value={option.name}>
+                {option.name}
+              </option>
+            ))}
+          </select>
+          {errors.assigned && touched.assigned && (
+            <>
+              <br />
+              <span className="errors">{errors.assigned}</span>
+            </>
+          )}
+        </div>
+        <div className="form-group">
+          <label htmlFor="status">Status</label>
+          <select
+            type="text"
+            name="status"
+            onBlur={handleBlur}
+            values={values.status}
+            onChange={handleChange}
+            className={
+              errors.status && touched.status ? "error" : "form-select"
+            }
+            defaultValue={project?.status}
+          >
+            <option value="enabled">Enabled</option>
+            <option value="disabled">Disabled</option>
+          </select>
+          {errors.status && touched.status && (
+            <>
+              <br />
+              <span className="errors">{errors.status}</span>
+            </>
+          )}
+        </div>
+        <div>
+          <Button text={buttonText} type={"submit"} />
+        </div>
+      </form>
+    </div>
   );
 }

@@ -19,13 +19,12 @@ export default function ButtonMenu({ id }) {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const handleClose = () => {};
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleDelete = (id) => {
+    setAnchorEl(null);
     swalConfirmation(
       "Are you sure you want to delete this project?",
       () => dispatch(deleteProject(id)),
