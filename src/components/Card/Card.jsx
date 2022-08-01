@@ -12,7 +12,7 @@ export default function Card({ project }) {
           <img
             className="user-pic"
             src={project.userImage}
-            alt="Profile picture"
+            alt={project.title}
           />
           <p>{project.assigned}</p>
         </div>

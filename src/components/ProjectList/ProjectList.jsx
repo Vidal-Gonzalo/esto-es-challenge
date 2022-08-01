@@ -7,6 +7,7 @@ export default function ProjectList({ projects, searchTerm }) {
         ?.filter((val) => {
           if (val.title.toLowerCase().includes(searchTerm.toLowerCase()))
             return val;
+          return "";
         })
         .map((val) => {
           return (

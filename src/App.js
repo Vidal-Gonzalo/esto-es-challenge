@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Projects from "./components/views/Projects/Projects";
