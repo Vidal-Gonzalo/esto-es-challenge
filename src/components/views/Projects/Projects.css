@@ -4,6 +4,7 @@
 }
 
 .projects ul {
+  list-style: none;
   padding: 0;
 }
 
@@ -22,4 +23,8 @@
   position: relative;
   width: 100%;
   box-sizing: border-box;
+}
+
+.projects .search input {
+  width: 50%;
 }
