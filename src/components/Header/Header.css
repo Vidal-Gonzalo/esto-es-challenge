@@ -1,0 +1,11 @@
+.header {
+  padding: 0.3rem;
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: var(--global-border);
+  background-color: var(--global-bg-color-soft);
+}
+
+.header img {
+  padding: 0.3rem;
+}

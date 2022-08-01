@@ -1,0 +1,15 @@
+:root {
+  --global-primary-color: #ccc;
+  --global-bg-color-soft: #ffffff;
+  --global-button-color: #f5222d;
+  --global-radius: 6px;
+  --global-border: 2px solid #f1f1f1;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f2f5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

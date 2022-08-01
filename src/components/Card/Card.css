@@ -1,0 +1,49 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: var(--global-border);
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding-left: 1em;
+}
+
+.card-info h3 {
+  font-size: 1em;
+}
+
+.card-info span {
+  font-weight: 100;
+  color: rgb(158, 154, 154);
+  font-size: 0.8em;
+}
+
+.card-info p {
+  color: #000;
+}
+
+.card-info .card-info-user {
+  display: flex;
+  align-items: center;
+}
+
+.card-info .card-info-user .user-pic {
+  width: 25px;
+  height: 25px;
+  margin-right: 0.7em;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.card .card-actions {
+  margin: 20px 10px 0px 0px;
+}
+
+.card .card-actions button {
+  cursor: pointer;
+  background-color: #ffffff;
+  border: none;
+}

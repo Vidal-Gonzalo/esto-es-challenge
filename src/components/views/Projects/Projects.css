@@ -1,0 +1,7 @@
+.projects {
+  background-color: var(--global-bg-color-soft);
+}
+
+.projects ul {
+  padding: 0;
+}

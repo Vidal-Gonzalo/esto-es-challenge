@@ -1,0 +1,12 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 40px;
+  width: 120px;
+  color: #ffffff;
+  background-color: var(--global-button-color);
+  border-radius: var(--global-radius);
+  border: none;
+  cursor: pointer;
+}
